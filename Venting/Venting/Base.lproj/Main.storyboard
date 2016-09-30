@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--VentRoomViewController-->
+        <scene sceneID="D8h-mh-vzF">
+            <objects>
+                <viewController title="VentRoomViewController" id="W7R-B5-zr2" customClass="VentRoomViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xQB-jm-uBp"/>
+                        <viewControllerLayoutGuide type="bottom" id="WDv-VU-k7B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hbg-ss-jU6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vjq-va-aK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804" y="653"/>
+        </scene>
+        <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Venting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +34,205 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4km-1v-qoh">
+                                <rect key="frame" x="252" y="28" width="97" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luf-dw-Oxd">
+                                <rect key="frame" x="256" y="36" width="89" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start Venting">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mgw-xq-XLj" kind="show" id="Ntl-ZH-oAb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcI-d6-6KF">
+                                <rect key="frame" x="234" y="98" width="133" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Help someone vent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="OGh-JP-ROM" kind="show" id="LAf-nc-N94"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zcI-d6-6KF" firstAttribute="top" secondItem="luf-dw-Oxd" secondAttribute="bottom" constant="32" id="CwM-cT-6Dg"/>
+                            <constraint firstAttribute="centerX" secondItem="luf-dw-Oxd" secondAttribute="centerX" id="Kg3-eO-dkT"/>
+                            <constraint firstItem="luf-dw-Oxd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="O3u-kI-zKK"/>
+                            <constraint firstAttribute="centerX" secondItem="zcI-d6-6KF" secondAttribute="centerX" id="hiL-IJ-Zcu"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="4km-1v-qoh"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="129" y="277"/>
+        </scene>
+        <!--EnterInfosViewController-->
+        <scene sceneID="UZv-WO-2UZ">
+            <objects>
+                <viewController title="EnterInfosViewController" id="OGh-JP-ROM" customClass="EnterInfosViewController" customModule="Venting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d61-ew-22V"/>
+                        <viewControllerLayoutGuide type="bottom" id="aId-c5-LFY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Wt-CT-27u">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your sex" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DK-k5-Ncl">
+                                <rect key="frame" x="241" y="36" width="118" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-3F-jZS">
+                                <rect key="frame" x="279" y="65" width="43" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Select">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gym-ZI-rA6">
+                                <rect key="frame" x="279" y="140" width="43" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Select">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51O-9P-fee">
+                                <rect key="frame" x="240" y="111" width="120" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7B-VZ-hsC">
+                                <rect key="frame" x="240" y="202" width="120" height="30"/>
+                                <animations/>
+                                <state key="normal" title="View Vent Rooms">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YRp-3g-05a" kind="show" id="cOU-cH-efC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g4O-3F-jZS" firstAttribute="top" secondItem="7DK-k5-Ncl" secondAttribute="bottom" constant="8" id="2eS-HS-MwP"/>
+                            <constraint firstAttribute="centerX" secondItem="7DK-k5-Ncl" secondAttribute="centerX" id="ADS-iT-ljV"/>
+                            <constraint firstAttribute="centerX" secondItem="Gym-ZI-rA6" secondAttribute="centerX" id="FMY-te-v9f"/>
+                            <constraint firstItem="7DK-k5-Ncl" firstAttribute="top" secondItem="d61-ew-22V" secondAttribute="bottom" constant="16" id="FVV-Qz-WY0"/>
+                            <constraint firstItem="O7B-VZ-hsC" firstAttribute="top" secondItem="Gym-ZI-rA6" secondAttribute="bottom" constant="32" id="GLr-lD-UVG"/>
+                            <constraint firstAttribute="centerX" secondItem="g4O-3F-jZS" secondAttribute="centerX" id="Ime-ri-7v9"/>
+                            <constraint firstAttribute="centerX" secondItem="O7B-VZ-hsC" secondAttribute="centerX" id="Spm-qU-3zT"/>
+                            <constraint firstItem="51O-9P-fee" firstAttribute="top" secondItem="g4O-3F-jZS" secondAttribute="bottom" constant="16" id="Wju-4X-3OG"/>
+                            <constraint firstAttribute="centerX" secondItem="51O-9P-fee" secondAttribute="centerX" id="fAi-L7-YAx"/>
+                            <constraint firstItem="Gym-ZI-rA6" firstAttribute="top" secondItem="51O-9P-fee" secondAttribute="bottom" constant="8" id="qCN-sR-07O"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fnc-6c-ePC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="1058"/>
+        </scene>
+        <!--ViewVentRoomsViewController-->
+        <scene sceneID="tLF-Qy-TsL">
+            <objects>
+                <viewController title="ViewVentRoomsViewController" id="YRp-3g-05a" customClass="ViewVentRoomsViewController" customModule="Venting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="azk-PK-yut"/>
+                        <viewControllerLayoutGuide type="bottom" id="l3e-SY-74e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rqT-Np-g9p">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="W7R-B5-zr2" kind="show" id="Zc9-bw-8Lz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eaP-mi-sLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="861" y="1058"/>
+        </scene>
+        <!--StartVentingViewController-->
+        <scene sceneID="BGl-pu-lq7">
+            <objects>
+                <viewController title="StartVentingViewController" id="mgw-xq-XLj" customClass="StartVentingViewController" customModule="Venting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PbU-PM-ed9"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZYN-Va-9po"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kXE-RK-S4e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a title for your Vent Room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buw-Ah-83q">
+                                <rect key="frame" x="171" y="20" width="259" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vent Room Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fLz-Wo-0ER">
+                                <rect key="frame" x="238" y="57" width="124" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-ln-cm0">
+                                <rect key="frame" x="244" y="95" width="113" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start Vent Room">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="W7R-B5-zr2" kind="show" id="lwO-cK-F1c"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="5Pd-ln-cm0" secondAttribute="centerX" id="G27-Ip-f2b"/>
+                            <constraint firstAttribute="centerX" secondItem="fLz-Wo-0ER" secondAttribute="centerX" id="Gi2-zW-pn7"/>
+                            <constraint firstItem="fLz-Wo-0ER" firstAttribute="top" secondItem="Buw-Ah-83q" secondAttribute="bottom" constant="16" id="Kd0-AE-fOT"/>
+                            <constraint firstItem="Buw-Ah-83q" firstAttribute="top" secondItem="PbU-PM-ed9" secondAttribute="bottom" id="Ptz-Og-pNH"/>
+                            <constraint firstItem="5Pd-ln-cm0" firstAttribute="top" secondItem="fLz-Wo-0ER" secondAttribute="bottom" constant="8" symbolic="YES" id="Uoy-p6-l50"/>
+                            <constraint firstAttribute="centerX" secondItem="Buw-Ah-83q" secondAttribute="centerX" id="b4i-Mr-qD8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="startVentingButton" destination="5Pd-ln-cm0" id="HIa-uO-16I"/>
+                        <outlet property="ventRoomTitleTextField" destination="fLz-Wo-0ER" id="g2Y-oi-Pq7"/>
+                        <outlet property="view" destination="fLz-Wo-0ER" id="9h7-V8-Vlz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tsj-Dd-4Ir" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="861" y="277"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lwO-cK-F1c"/>
+    </inferredMetricsTieBreakers>
 </document>
