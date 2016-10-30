@@ -10,6 +10,9 @@ import UIKit
 
 class VentRoomViewController: UIViewController {
     
+    var ventRoomId: String?
+    var userName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
