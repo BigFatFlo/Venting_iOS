@@ -57,13 +57,13 @@ class StartVentingViewController: UIViewController {
         let ventRoomViewController = segue.destination as! VentRoomViewController
         if segue.identifier == "startVentingSegue" {
             let ventRoomTitle = ventRoomTitleTextField.text
-            let ventRoomId = openNewVentRoom(userId!, ventRoomTitle!, floor(NSDate().timeIntervalSince1970));
+            let ventRoomId = openNewVentRoom(userId!, ventRoomTitle!, Int64(floor(NSDate().timeIntervalSince1970)));
             ventRoomViewController.ventRoomId = ventRoomId
             ventRoomViewController.userName = "Venter"
         }
     }
     
-    func openNewVentRoom(_ localUserId: String, _ ventRoomTitle: String, _ currentTime: Double) -> String {
+    func openNewVentRoom(_ localUserId: String, _ ventRoomTitle: String, _ currentTime: Int64) -> String {
         ref = FIRDatabase.database().reference()
         let roomId = "\(currentTime)" + localUserId
         let ventRoom: [String: Any] = [
