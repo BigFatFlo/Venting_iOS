@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +21,91 @@
                     <view key="view" contentMode="scaleToFill" id="Hbg-ss-jU6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tmq-xw-lU7">
+                                <rect key="frame" x="4" y="59" width="367" height="562"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="91" id="IGy-Qc-Jrs" customClass="MessageCell" customModule="Venting" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="367" height="91"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IGy-Qc-Jrs" id="bAg-eO-aCq">
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKY-2Q-gId">
+                                                    <rect key="frame" x="3" y="11" width="353" height="61"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkZ-C7-snd">
+                                                    <rect key="frame" x="321" y="69" width="35" height="10"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mKY-2Q-gId" firstAttribute="top" secondItem="bAg-eO-aCq" secondAttribute="topMargin" constant="3" id="HMk-c8-n9w"/>
+                                                <constraint firstItem="MkZ-C7-snd" firstAttribute="trailing" secondItem="mKY-2Q-gId" secondAttribute="trailing" id="LmW-Hl-1dJ"/>
+                                                <constraint firstItem="MkZ-C7-snd" firstAttribute="top" secondItem="mKY-2Q-gId" secondAttribute="bottom" constant="-3" id="PPN-pc-CJ1" userLabel="Sender.top = Text.bottom - 3"/>
+                                                <constraint firstItem="mKY-2Q-gId" firstAttribute="leading" secondItem="bAg-eO-aCq" secondAttribute="leading" constant="3" id="mEQ-xD-sUj"/>
+                                                <constraint firstItem="mKY-2Q-gId" firstAttribute="height" secondItem="bAg-eO-aCq" secondAttribute="height" constant="-30" id="u3t-t3-C4m"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MkZ-C7-snd" secondAttribute="bottom" constant="3" id="vB7-us-BTg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MkZ-C7-snd" secondAttribute="trailing" constant="3" id="xES-KG-h6w"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageText" destination="mKY-2Q-gId" id="Mzh-Qd-Odl"/>
+                                            <outlet property="sender" destination="MkZ-C7-snd" id="r6R-FY-iHP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="W7R-B5-zr2" id="wPM-ER-i4V"/>
+                                    <outlet property="delegate" destination="W7R-B5-zr2" id="9Ql-ez-QgE"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MT3-dE-aN9">
+                                <rect key="frame" x="0.0" y="629" width="304" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G37-eF-b4k">
+                                <rect key="frame" x="313" y="629" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="fxC-Ft-2sP"/>
+                                </constraints>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendMessage:" destination="W7R-B5-zr2" eventType="touchUpInside" id="Y9J-nW-WQt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="WDv-VU-k7B" firstAttribute="top" secondItem="MT3-dE-aN9" secondAttribute="bottom" constant="8" id="6bE-iD-JfO"/>
+                            <constraint firstItem="tmq-xw-lU7" firstAttribute="leading" secondItem="Hbg-ss-jU6" secondAttribute="leading" constant="4" id="8tX-2T-XT2"/>
+                            <constraint firstItem="MT3-dE-aN9" firstAttribute="leading" secondItem="Hbg-ss-jU6" secondAttribute="leading" id="9Lt-2Y-2fH"/>
+                            <constraint firstItem="G37-eF-b4k" firstAttribute="leading" secondItem="MT3-dE-aN9" secondAttribute="trailing" constant="9" id="Quu-7I-DEz" userLabel="Send Button.leading = Text Field.trailing + 8"/>
+                            <constraint firstItem="G37-eF-b4k" firstAttribute="baseline" secondItem="MT3-dE-aN9" secondAttribute="baseline" constant="1" id="dy6-xP-vcA" userLabel="Send Button.baseline = Text Field.baseline"/>
+                            <constraint firstAttribute="trailing" secondItem="tmq-xw-lU7" secondAttribute="trailing" constant="4" id="fw5-hX-scZ"/>
+                            <constraint firstItem="MT3-dE-aN9" firstAttribute="top" secondItem="tmq-xw-lU7" secondAttribute="bottom" constant="8" id="tmz-RF-THh" userLabel="Text Field.top = Messages Table.bottom + 8"/>
+                            <constraint firstItem="tmq-xw-lU7" firstAttribute="top" secondItem="xQB-jm-uBp" secondAttribute="bottom" constant="39" id="xod-rd-7Su" userLabel="Messages Table.top = Top Layout Guide.bottom + 8"/>
+                            <constraint firstItem="G37-eF-b4k" firstAttribute="trailing" secondItem="Hbg-ss-jU6" secondAttribute="trailingMargin" id="ziJ-cL-8S8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="messagesTable" destination="tmq-xw-lU7" id="6Cr-eo-ssK"/>
+                        <outlet property="sendButton" destination="G37-eF-b4k" id="70t-eV-3kv"/>
+                        <outlet property="textField" destination="MT3-dE-aN9" id="kp4-vW-Y6i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjq-va-aK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="653"/>
+            <point key="canvasLocation" x="1804" y="652.62368815592208"/>
         </scene>
         <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">

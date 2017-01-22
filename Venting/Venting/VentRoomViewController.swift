@@ -13,8 +13,24 @@ import Firebase
 class VentRoomViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,
 UITextFieldDelegate, UINavigationControllerDelegate {
     
+    let VENTROOMS_CHILD = "ventRooms"
+    let VENTROOMS_AGE_SLOTS_CHILD = "ventRoomsAgeSlots"
+    let MESSAGES_CHILD = "messages"
+    let TIME_LEFT_CHILD = "timeLeft"
+    let LAST_UPDATE_TIME_CHILD = "lastUpdateTime"
+    let VENTROOM_TIMEOUT = 2*60*60*1000 // 1 hour, 1 min
+    let VENTROOM_LIFESPAN = 60*60*1000 // 1 hour
+    let ageCategories =  [
+    "15F", "20F", "25F", "30F", "35F",
+    "40F", "45F", "50F", "55F", "60F",
+    "65F", "70F", "75F", "80F", "85F",
+    "90F", "95F", "15M", "20M", "25M",
+    "30M", "35M", "40M", "45M", "50M",
+    "55M", "60M", "65M", "70M", "75M",
+    "80M", "85M", "90M", "95M"]
     var ventRoomId: String?
     var userName: String?
+    var userId: String?
     // Instance variables
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
@@ -23,15 +39,24 @@ UITextFieldDelegate, UINavigationControllerDelegate {
     var msglength: NSNumber = 10
     fileprivate var _refHandle: FIRDatabaseHandle!
     
-    @IBOutlet weak var clientTable: UITableView!
+    @IBOutlet weak var messagesTable: UITableView!
+    
+    let reuseIdentifier = "MessageCell"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.clientTable.register(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
-        
-        configureDatabase()    }
+        FIRAuth.auth()?.signInAnonymously() { (user, error) in
+            if (error != nil) {
+                print("Couldn't authentify")
+            } else {
+                self.userId = user!.uid
+                print("Authentification successful")
+            }
+        }
+        self.messagesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        configureDatabase()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,27 +64,24 @@ UITextFieldDelegate, UINavigationControllerDelegate {
     }
     
     deinit {
-        self.ref.child("messages").removeObserver(withHandle: _refHandle)
+        self.ref.child(MESSAGES_CHILD).child(ventRoomId!).removeObserver(withHandle: _refHandle)
     }
     
     func configureDatabase() {
         ref = FIRDatabase.database().reference()
         // Listen for new messages in the Firebase database
-        _refHandle = self.ref.child("messages").observe(.childAdded, with: { (snapshot) -> Void in
+        _refHandle = self.ref.child(MESSAGES_CHILD).child(ventRoomId!).observe(.childAdded, with: { (snapshot) -> Void in
             self.messages.append(snapshot)
-            self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
+            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
         })
     }
     
-    @IBAction func didSendMessage(_ sender: UIButton) {
-        textFieldShouldReturn(textField)
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-        
-        let newLength = text.utf16.count + string.utf16.count - range.length
-        return newLength <= self.msglength.intValue // Bool
+    @IBAction func sendMessage(_ sender: UIButton) {
+        // Push data to Firebase Database
+        if (textField.text!.characters.count > 0 && userName != nil && userId != nil) {
+            let message = ["text": textField.text, "sender": userName];
+            self.ref.child(MESSAGES_CHILD).child(ventRoomId!).childByAutoId().setValue(message);
+        }
     }
     
     // UITableViewDataSource protocol methods
@@ -69,49 +91,16 @@ UITextFieldDelegate, UINavigationControllerDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue cell
-        let cell: UITableViewCell! = self.clientTable .dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        let cell: MessageCell = self.messagesTable.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         // Unpack message from Firebase DataSnapshot
         let messageSnapshot: FIRDataSnapshot! = self.messages[indexPath.row]
         let message = messageSnapshot.value as! Dictionary<String, String>
-        let name = message[Constants.MessageFields.name] as String!
-        if let imageUrl = message[Constants.MessageFields.imageUrl] {
-            if imageUrl.hasPrefix("gs://") {
-                FIRStorage.storage().referenceForURL(imageUrl).dataWithMaxSize(INT64_MAX){ (data, error) in
-                    if let error = error {
-                        print("Error downloading: \(error)")
-                        return
-                    }
-                    cell.imageView?.image = UIImage.init(data: data!)
-                }
-            } else if let url = URL(string:imageUrl), let data = Data(contentsOfURL: url) {
-                cell.imageView?.image = UIImage.init(data: data)
-            }
-            cell!.textLabel?.text = "sent by: \(name)"
-        } else {
-            let text = message[Constants.MessageFields.text] as String!
-            cell!.textLabel?.text = name + ": " + text
-            cell!.imageView?.image = UIImage(named: "ic_account_circle")
-            if let photoUrl = message[Constants.MessageFields.photoUrl], let url = URL(string:photoUrl), let data = Data(contentsOfURL: url) {
-                cell!.imageView?.image = UIImage(data: data)
-            }
-        }
-        return cell!
+        let text = message["text"] as String?
+        let sender = message["sender"] as String?
+        print(text!)
+        print(sender!)
+        cell.messageText.text = text
+        cell.sender.text = sender
+        return cell
     }
-    
-    // UITextViewDelegate protocol methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let data = [Constants.MessageFields.text: textField.text! as String]
-        sendMessage(data)
-        return true
-    }
-    
-    func sendMessage(_ data: [String: String]) {
-        var mdata = data
-        mdata[Constants.MessageFields.name] = AppState.sharedInstance.displayName
-        if let photoUrl = AppState.sharedInstance.photoUrl {
-            mdata[Constants.MessageFields.photoUrl] = photoUrl.absoluteString
-        }
-        // Push data to Firebase Database
-        self.ref.child("messages").childByAutoId().setValue(mdata)
-    }
-    }
+}

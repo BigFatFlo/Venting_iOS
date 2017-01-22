@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E24A50C1E34F29000389160 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E24A50B1E34F29000389160 /* MessageCell.swift */; };
 		6E33FA7D1DC65F21007F0357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E33FA7C1DC65F21007F0357 /* GoogleService-Info.plist */; };
 		6E33FA7E1DC65F21007F0357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E33FA7C1DC65F21007F0357 /* GoogleService-Info.plist */; };
 		6EB98D1F1D9C658400BEDAB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB98D1E1D9C658400BEDAB8 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		22D4C8A953E6E4FFF5E6A5BC /* Pods_VentingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VentingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		363A3B4792B2818629AA7520 /* Pods_Venting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Venting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4839F72AB8C67BB924D35B12 /* Pods-VentingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VentingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VentingTests/Pods-VentingTests.release.xcconfig"; sourceTree = "<group>"; };
+		6E24A50B1E34F29000389160 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		6E33FA7C1DC65F21007F0357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EB98D191D9C658400BEDAB8 /* Venting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Venting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB98D1D1D9C658400BEDAB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				6EB98D421D9F00B200BEDAB8 /* EnterInfosViewController.swift */,
 				6EB98D441D9F00C700BEDAB8 /* ViewVentRoomsViewController.swift */,
 				6EB98D461D9F00DA00BEDAB8 /* StartVentingViewController.swift */,
+				6E24A50B1E34F29000389160 /* MessageCell.swift */,
 				6EB98D401D9F009A00BEDAB8 /* VentRoomViewController.swift */,
 				6EB98D221D9C658400BEDAB8 /* Main.storyboard */,
 				6EB98D251D9C658400BEDAB8 /* Images.xcassets */,
@@ -369,6 +372,7 @@
 				6EB98D451D9F00C700BEDAB8 /* ViewVentRoomsViewController.swift in Sources */,
 				6EB98D431D9F00B200BEDAB8 /* EnterInfosViewController.swift in Sources */,
 				6EB98D3F1D9EFFD700BEDAB8 /* HomeViewController.swift in Sources */,
+				6E24A50C1E34F29000389160 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
